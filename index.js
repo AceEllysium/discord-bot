@@ -4,7 +4,7 @@ const config = require("./config.json");
 const p = config.prefix;
 
 client.on("ready", () => {
-  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
+  console.log(`Logged in as ${client.user.tag}!`); 
 
   client.user.setGame(name = '!a help', url = 'https://www.twitch.tv/giovanniv25', type = 1)
   client.user.setStatus('idle')
@@ -43,7 +43,7 @@ client.on("message", async message => {
   }
 //=======================================================================================\\
   if(command === 'slap') {
-    message.channel.send('I Will Never Slap U :heart: http://lykosapi.cuddliness.xyz/images/hugs/avatar_2e200498fcdf_128.jpg')
+    message.channel.send('I Will Never Slap U :heart: http://lykosapi.cuddliness.xyz/images/hugs/tumblr_o76qfcMiFn1sk1rjvo1_500.gif ')
   }
 //=======================================================================================\\
   if(command === "feel") {
@@ -74,7 +74,7 @@ if(command === "purge") {
 if (command === "help") {
   const embed = new Discord.RichEmbed()
     .setAuthor("Help Page", client.user.avatarURL)
-    .setColor([136, 78, 160])
+    .setColor([200, 124, 233])
     .addField("!a help", "This Menu")
     .addField("!a ping", "Pong!")
     .addField("!a test", "Respond With Success")
