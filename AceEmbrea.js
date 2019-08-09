@@ -3,12 +3,19 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const p = config.prefix;
 //=================================================================================\\
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`); 
+let statuses = ['!a help|V1.5.0', '!a help|nya', '!a help|Asteray', '!a help|Discord,Js!'];
 
-  client.user.setGame(name = '!a help'),( url = 'https://www.twitch.tv/giovanniv25', type = 1)
-  client.user.setStatus('idle')
-});
+client.on("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  
+  setInterval(function() {
+
+    let status = statuses[Math.floor(Math.random()*statuses.length)];
+
+    client.user.setPresence({ game: { name: status }, status: 'idle'});
+  }, 5000)
+
+})
 //=================================================================================\\
 client.on("message", async message => {
   if(message.author.bot) return;
@@ -37,6 +44,18 @@ client.on("message", async message => {
       },
       title: "Click Here For The Link",
       url: "https://discordapp.com/api/oauth2/authorize?client_id=459245951924830208&permissions=0&redirect_uri=https%3A%2F%2Fdiscordapp.com%2Foauth2%2Fauthorize%3Fclient_id%3D459245951924830208%26scope%3Dbot&scope=bot",
+      description: "\u200b"}})
+  }
+//==================================================================================\\
+  if(command === 'support') {
+    message.channel.send({embed: {
+      color: 5784356,
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL
+      },
+      title: "Click Here For The Link",
+      url: "https://discord.gg/nfZdkrU",
       description: "\u200b"}})
   }
 //==================================================================================\\
@@ -73,7 +92,7 @@ if(command === "purge") {
   
   if(!deleteCount || deleteCount < 2 || deleteCount > 100)
     return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
- 
+  
   const fetched = await message.channel.fetchMessages({limit: deleteCount});
   message.channel.bulkDelete(fetched)
     .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
@@ -95,7 +114,7 @@ if (command === "help") {
     .addField("!a support", "Gives The Discord Support Server Link");
 
   message.channel.sendEmbed(embed);
-  message.channel.sendMessage(`${message.author}, Sening Help Menu...NOW!`);
+  message.channel.sendMessage(`${message.author}, Sending Help Menu... NOW!`);
 }
 //=======================================================================================\\
 exports.run = function(client, message, args) {
